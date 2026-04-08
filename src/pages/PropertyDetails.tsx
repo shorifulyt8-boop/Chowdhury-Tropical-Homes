@@ -282,13 +282,13 @@ export default function PropertyDetails() {
             <div className="mt-8 bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
               <h4 className="font-bold text-primary mb-4">Direct Contact</h4>
               <div className="space-y-4">
-                <a href="tel:+880123456789" className="flex items-center space-x-3 text-slate-600 hover:text-accent transition-colors">
+                <a href="tel:01720244227" className="flex items-center space-x-3 text-slate-600 hover:text-accent transition-colors">
                   <Phone className="w-5 h-5 text-accent" />
-                  <span className="font-medium">+880 1234 567 890</span>
+                  <span className="font-medium">01720 24 42 27</span>
                 </a>
-                <a href="mailto:info@eliteestates.com" className="flex items-center space-x-3 text-slate-600 hover:text-accent transition-colors">
+                <a href="mailto:chowdhurytropicalhome@gmail.com" className="flex items-center space-x-3 text-slate-600 hover:text-accent transition-colors">
                   <Mail className="w-5 h-5 text-accent" />
-                  <span className="font-medium">info@eliteestates.com</span>
+                  <span className="font-medium">chowdhurytropicalhome@gmail.com</span>
                 </a>
               </div>
             </div>
