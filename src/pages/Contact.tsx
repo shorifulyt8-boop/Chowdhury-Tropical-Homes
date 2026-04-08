@@ -76,7 +76,6 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-primary mb-2">Phone Numbers</h3>
-                  <p className="text-slate-500 text-sm">018 1664 9124</p>
                   <p className="text-slate-500 text-sm">01720 24 42 27</p>
                 </div>
               </div>
