@@ -156,9 +156,14 @@ export default function AdminDashboard() {
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-slate-100 w-full max-w-md">
         <div className="text-center mb-10">
-          <div className="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <motion.div
+            animate={{ rotateY: 360 }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            style={{ perspective: 1000 }}
+            className="w-16 h-16 navy-gradient rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+          >
             <Building2 className="text-accent w-8 h-8" />
-          </div>
+          </motion.div>
           <h2 className="text-3xl font-bold text-primary">Admin Login</h2>
         </div>
         <form onSubmit={handleLogin} className="space-y-6">
@@ -173,7 +178,16 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-slate-50 flex">
       <aside className="w-64 bg-primary text-white hidden lg:flex flex-col p-6 sticky top-0 h-screen">
-        <div className="flex items-center space-x-2 mb-12"><Building2 className="text-accent w-8 h-8" /><span className="text-xl font-bold uppercase">CT HOMES ADMIN</span></div>
+        <div className="flex items-center space-x-2 mb-12">
+          <motion.div
+            animate={{ rotateY: 360 }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            style={{ perspective: 1000 }}
+          >
+            <Building2 className="text-accent w-8 h-8" />
+          </motion.div>
+          <span className="text-xl font-bold uppercase">CT HOMES ADMIN</span>
+        </div>
         <nav className="flex-1 space-y-2">
           <button onClick={() => setActiveTab('listings')} className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl ${activeTab === 'listings' ? 'bg-accent text-primary font-bold' : 'hover:bg-white/10'}`}><LayoutDashboard className="w-5 h-5" /><span>Listings</span></button>
           <button onClick={() => setActiveTab('leads')} className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl ${activeTab === 'leads' ? 'bg-accent text-primary font-bold' : 'hover:bg-white/10'}`}><MessageSquare className="w-5 h-5" /><span>Leads</span></button>

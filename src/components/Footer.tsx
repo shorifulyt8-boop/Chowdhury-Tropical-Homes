@@ -1,5 +1,6 @@
 import { useProperties } from '../context/PropertyContext';
 import { Building2, Facebook } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function Footer() {
   const { settings } = useProperties();
@@ -9,18 +10,24 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         <div className="lg:col-span-1">
           <div className="flex items-center space-x-3 mb-6 justify-center sm:justify-start">
-            {settings?.site_logo ? (
-              <img 
-                src={settings.site_logo} 
-                alt="Logo" 
-                className="h-10 w-auto object-contain" 
-                referrerPolicy="no-referrer" 
-              />
-            ) : (
-              <div className="w-10 h-10 navy-gradient rounded-lg flex items-center justify-center shadow-lg">
-                <Building2 className="text-accent w-6 h-6" />
-              </div>
-            )}
+            <motion.div
+              animate={{ rotateY: 360 }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              style={{ perspective: 1000 }}
+            >
+              {settings?.site_logo ? (
+                <img 
+                  src={settings.site_logo} 
+                  alt="Logo" 
+                  className="h-10 w-auto object-contain" 
+                  referrerPolicy="no-referrer" 
+                />
+              ) : (
+                <div className="w-10 h-10 navy-gradient rounded-lg flex items-center justify-center shadow-lg">
+                  <Building2 className="text-accent w-6 h-6" />
+                </div>
+              )}
+            </motion.div>
             <span className="text-xl font-bold tracking-tight">
               CHOWDHURY<span className="text-accent"> TROPICAL HOMES</span>
             </span>

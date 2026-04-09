@@ -25,18 +25,24 @@ export default function Navbar() {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-3">
-              {settings?.site_logo ? (
-                <img 
-                  src={settings.site_logo} 
-                  alt="Logo" 
-                  className="h-12 w-auto object-contain" 
-                  referrerPolicy="no-referrer" 
-                />
-              ) : (
-                <div className="w-10 h-10 navy-gradient rounded-lg flex items-center justify-center shadow-lg">
-                  <Building2 className="text-accent w-6 h-6" />
-                </div>
-              )}
+              <motion.div
+                animate={{ rotateY: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                style={{ perspective: 1000 }}
+              >
+                {settings?.site_logo ? (
+                  <img 
+                    src={settings.site_logo} 
+                    alt="Logo" 
+                    className="h-12 w-auto object-contain" 
+                    referrerPolicy="no-referrer" 
+                  />
+                ) : (
+                  <div className="w-10 h-10 navy-gradient rounded-lg flex items-center justify-center shadow-lg">
+                    <Building2 className="text-accent w-6 h-6" />
+                  </div>
+                )}
+              </motion.div>
               <span className="text-xl md:text-2xl font-display font-bold text-primary tracking-tight">
                 CHOWDHURY<span className="text-accent"> TROPICAL HOMES</span>
               </span>
