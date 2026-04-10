@@ -1,11 +1,12 @@
 import { useProperties } from '../context/PropertyContext';
 import Hero from '../components/Hero';
 import PropertyCard from '../components/PropertyCard';
+import Building3D from '../components/Building3D';
 import { motion } from 'motion/react';
 import { 
   ArrowRight, ShieldCheck, Trophy, Users, Building2, 
   Home as HomeIcon, Key, Map, Search, CheckCircle, Quote,
-  Star, Clock, Heart
+  Star, Clock, Heart, Move3d
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -92,6 +93,39 @@ export default function Home() {
     <div className="space-y-24 pb-24 overflow-hidden">
       <Hero />
 
+      {/* Featured Properties */}
+      <section className="max-w-7xl mx-auto px-4">
+        <motion.div 
+          {...fadeInUp}
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
+        >
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Featured Properties</h2>
+            <p className="text-slate-500 max-w-xl">
+              Explore our hand-picked selection of premium flats and prime land plots available for sale.
+            </p>
+          </div>
+          <Link
+            to="/category/Flat"
+            className="flex items-center text-accent font-bold hover:text-primary transition-colors"
+          >
+            View All Properties <ArrowRight className="w-5 h-5 ml-2" />
+          </Link>
+        </motion.div>
+
+        <motion.div 
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {featuredProperties.map((property: any) => (
+            <PropertyCard key={property.id} property={property} />
+          ))}
+        </motion.div>
+      </section>
+
       {/* Stats Section */}
       <motion.section 
         {...fadeInUp}
@@ -121,6 +155,43 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
+
+      {/* 3D Building Section */}
+      <section className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full font-bold text-sm uppercase tracking-wider">
+              Interactive 3D View
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary leading-tight">
+              Experience Our <span className="text-accent">Architecture</span> in 3D
+            </h2>
+            <p className="text-slate-500 text-lg leading-relaxed">
+              Touch and rotate the building to explore our modern architectural designs. We bring innovation to every corner of your future home.
+            </p>
+            <div className="flex items-center space-x-4 text-slate-400">
+              <div className="flex items-center space-x-2">
+                <Move3d className="w-5 h-5 text-accent" />
+                <span className="text-sm font-medium">Rotate with Mouse/Touch</span>
+              </div>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-slate-50 rounded-[3rem] border border-slate-100 shadow-inner overflow-hidden"
+          >
+            <Building3D />
+          </motion.div>
+        </div>
+      </section>
 
       {/* About Section */}
       <section className="max-w-7xl mx-auto px-4">
@@ -220,39 +291,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Featured Properties */}
-      <section className="max-w-7xl mx-auto px-4">
-        <motion.div 
-          {...fadeInUp}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
-        >
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Featured Properties</h2>
-            <p className="text-slate-500 max-w-xl">
-              Explore our hand-picked selection of premium flats and prime land plots available for sale.
-            </p>
-          </div>
-          <Link
-            to="/category/Flat"
-            className="flex items-center text-accent font-bold hover:text-primary transition-colors"
-          >
-            View All Properties <ArrowRight className="w-5 h-5 ml-2" />
-          </Link>
-        </motion.div>
-
-        <motion.div 
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {featuredProperties.map((property: any) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
-        </motion.div>
       </section>
 
       {/* How It Works */}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useProperties } from '../context/PropertyContext';
-import { MapPin, Maximize, Building2, Check, Phone, Mail, Calendar, ArrowLeft } from 'lucide-react';
+import { MapPin, Maximize, Building2, Check, Phone, Mail, Calendar, ArrowLeft, Share2, Facebook, Twitter, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function PropertyDetails() {
@@ -10,6 +10,30 @@ export default function PropertyDetails() {
   const property = properties.find((p) => p.id === id);
   const [activeImage, setActiveImage] = useState(0);
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+
+  const shareUrl = window.location.href;
+  const shareTitle = property ? `Check out this property: ${property.title}` : '';
+
+  const shareLinks = [
+    {
+      name: 'Facebook',
+      icon: Facebook,
+      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+      color: 'bg-[#1877F2] hover:bg-[#1877F2]/90'
+    },
+    {
+      name: 'Twitter',
+      icon: Twitter,
+      url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`,
+      color: 'bg-[#1DA1F2] hover:bg-[#1DA1F2]/90'
+    },
+    {
+      name: 'WhatsApp',
+      icon: MessageCircle,
+      url: `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTitle + ' ' + shareUrl)}`,
+      color: 'bg-[#25D366] hover:bg-[#25D366]/90'
+    }
+  ];
 
   if (!property) {
     return (
@@ -290,6 +314,27 @@ export default function PropertyDetails() {
                   <Mail className="w-5 h-5 text-accent" />
                   <span className="font-medium">chowdhurytropicalhome@gmail.com</span>
                 </a>
+              </div>
+            </div>
+
+            <div className="mt-8 bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+              <h4 className="font-bold text-primary mb-4 flex items-center">
+                <Share2 className="w-5 h-5 mr-2 text-accent" />
+                Share Property
+              </h4>
+              <div className="flex gap-3">
+                {shareLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex-1 flex items-center justify-center p-3 rounded-xl text-white transition-all shadow-sm hover:shadow-md ${link.color}`}
+                    title={`Share on ${link.name}`}
+                  >
+                    <link.icon className="w-5 h-5" />
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>
